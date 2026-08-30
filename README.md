@@ -1,67 +1,54 @@
-# Intelink Language
+# Intelink Language — Termux
 
-Linguagem principal e runtime Python puro para criar ferramentas no Termux.
+## O que é
 
-Este é um produto da **Intelink**, desenvolvido para o Termux no Android. A documentação, os exemplos e os arquivos deste repositório foram separados para facilitar estudo, instalação e evolução do projeto.
+O **Intelink Language** é o executor e runtime da linguagem de programação Intelink preparado para o **Termux no Android**. A linguagem Intelink é o conjunto de regras, comandos e formatos que o programador utiliza; o Python aparece neste repositório como tecnologia usada para implementar o executor e ferramentas auxiliares.
+
+Este projeto é a referência do ambiente Termux. A versão para computador na nuvem ou sandbox fica separada no repositório [intelink-sandbox](https://github.com/protagonistadasilva799-star/intelink-sandbox).
+
+## Para que serve
+
+O runtime permite estudar e executar programas Intelink no Termux, com modo interativo e operações integradas ao ambiente Android. A implementação contém mecanismos para interpretar entradas da linguagem, manter valores em memória, executar funções disponíveis e encaminhar somente comandos de sistema autorizados. A gramática completa deve ser conferida no executor, nos exemplos e nos testes do próprio repositório.
 
 ## Instalação no Termux
 
-Transfira o pacote `.deb` correspondente para o aparelho e execute:
-
-```bash
-pkg install python dpkg
-dpkg -i NOME_DO_PACOTE.deb
-```
-
-## Primeiro teste
-
-```bash
-intelink exemplo.ilk
-```
-
-## Arquivos deste repositório
-
-- `intelink-language_0.1.0_all.deb`
-- `intelink_runtime.py`
-
-## Crédito Intelink
-
-Publicações autorizadas devem informar claramente: **“Este projeto utiliza tecnologia da Intelink.”** Consulte [TERMS.md](TERMS.md) antes de usar ou publicar qualquer projeto baseado neste trabalho.
-
-## Compatibilidade
-
-O alvo principal é o Termux. Componentes Python puros são portáteis; executores nativos, modelos GGUF e integrações externas dependem da arquitetura, memória e ferramentas disponíveis no aparelho.
-
-## Documentação técnica ampliada
-## O que é este projeto
-
-O **Intelink Language** é o executor e runtime da linguagem de programação Intelink para Termux/Android. A linguagem é o formato que o usuário programa; os arquivos Python presentes neste repositório são a implementação hospedeira do executor, e não a definição de que Intelink seja Python.
-
-## Como funciona
-
-O arquivo `src/intelink_runtime.py` implementa o runtime e o modo interativo. Ele lê comandos e construções da linguagem Intelink, mantém valores em memória, oferece operações de linguagem e pode encaminhar comandos permitidos ao ambiente Termux. A execução de comandos do sistema é restringida por uma lista de comandos autorizados e, quando aplicável, por confirmação do usuário.
-
-## Programação
-
-Antes de usar uma construção, consulte o código e os exemplos disponíveis neste repositório. O runtime documenta recursos como atribuições, funções, retorno, operações de IA, memória local e execução controlada de comandos. A extensão de arquivos, a gramática completa e os recursos suportados devem ser tratados como a especificação efetivamente implementada pelo executor, não como uma promessa genérica.
-
-## Execução
-
-No Termux, instale Python e o pacote Debian correspondente quando ele estiver disponível:
+Quando o pacote Debian estiver disponível para a arquitetura do aparelho:
 
 ```bash
 pkg install python dpkg
 dpkg -i packages/intelink-language_*.deb
 ```
 
-Para estudar o executor diretamente:
+Também é possível estudar a implementação diretamente:
 
 ```bash
 python3 src/intelink_runtime.py
 ```
 
-A versão `intelink-sandbox` é a adaptação separada para computador Linux na nuvem. Um pacote `.deb` preparado para Termux não deve ser instalado automaticamente em outro ambiente.
+## Programação
 
-## Criador
+O primeiro passo é criar um arquivo no formato aceito pelo executor e executar o arquivo com o comando disponibilizado pelo pacote. Não use construções apenas mencionadas em planos ou descrições sem confirmar que o parser atual as reconhece.
 
-**Criador:** Samuel Artulino. Consulte `TERMS.md` antes de usar, redistribuir ou publicar derivados.
+Recursos como atribuições, funções, retorno, operações de IA, memória local e execução controlada de comandos devem ser tratados de acordo com o comportamento observado no código. Exemplos não confirmados devem ser marcados como experimentais ou não implementados.
+
+## Segurança
+
+A execução de comandos externos é limitada por uma lista de comandos autorizados. Comandos Termux, permissões do Android, acesso a arquivos, clipboard, bateria e outros recursos dependem do que está efetivamente implementado e das permissões concedidas ao Termux. Nunca execute código de fonte desconhecida sem revisar suas operações.
+
+## Compatibilidade
+
+O alvo principal é Termux/Android. Pacotes `.deb` deste repositório não devem ser instalados automaticamente em um computador Linux comum ou no sandbox, porque podem conter caminhos, comandos e pressupostos específicos do Termux. Para o sandbox, use a adaptação separada.
+
+## Arquivos principais
+
+| Caminho | Função |
+|---|---|
+| `src/intelink_runtime.py` | Runtime e executor principal |
+| `packages/` | Pacotes Debian quando publicados |
+| `TERMS.md` | Termos e condições de uso |
+
+## Criador e termos
+
+**Criador:** Samuel Artulino.
+
+Este projeto utiliza tecnologia da Intelink. Antes de usar, modificar, redistribuir ou publicar derivados, leia [TERMS.md](TERMS.md) e preserve os créditos e as restrições estabelecidas nele.
