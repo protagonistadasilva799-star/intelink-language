@@ -52,3 +52,15 @@ O alvo principal é Termux/Android. Pacotes `.deb` deste repositório não devem
 **Criador:** Samuel Artulino.
 
 Este projeto utiliza tecnologia da Intelink. Antes de usar, modificar, redistribuir ou publicar derivados, leia [TERMS.md](TERMS.md) e preserve os créditos e as restrições estabelecidas nele.
+
+## Intelink Check
+
+O `intelink-check` é uma ferramenta de diagnóstico local para verificar os arquivos essenciais, a versão do Python e dependências opcionais. Ela não instala pacotes, não acessa a rede e não executa comandos externos.
+
+```sh
+export PATH="$PWD/bin:$PATH"
+intelink-check
+intelink-check --json
+```
+
+O relatório considera Python e os arquivos do runtime como requisitos básicos. Ollama e `llama-cli` são dependências opcionais para backends de modelos locais; quando ausentes, aparecem como itens para revisão, sem invalidar o runtime principal.
